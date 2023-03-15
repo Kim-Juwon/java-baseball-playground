@@ -24,7 +24,7 @@ public class SetTest {
     }
 
     @Test
-    void size() {
+    void size_ShouldReturnTheExactSize() {
         assertThat(numbers.size()).isEqualTo(3);
     }
 
