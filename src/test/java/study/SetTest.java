@@ -30,7 +30,7 @@ public class SetTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    void contains(Integer input) {
+    void contains_ShouldBeTrueIfIncluded(Integer input) {
         assertThat(numbers.contains(input)).isTrue();
     }
 
