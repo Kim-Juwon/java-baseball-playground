@@ -1,7 +1,6 @@
 package baseball.view;
 
 import baseball.component.Hint;
-import baseball.component.Hints;
 import baseball.component.Status;
 
 import java.util.Scanner;
@@ -11,7 +10,7 @@ public class ResultView {
     private static final String MESSAGE_FOR_QUESTION_RESTART = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     private final Scanner scanner = new Scanner(System.in);
 
-    public boolean showResultAndGetSuccessStatus(Hints hints) {
+    public boolean showResultAndGetSuccessStatus(Hint hints) {
         if (isSuccess(hints)) {
             showSuccessView();
             return true;
@@ -21,12 +20,12 @@ public class ResultView {
         return false;
     }
 
-    private boolean isSuccess(Hints hints) {
+    private boolean isSuccess(Hint hints) {
         return hints.hasOnlyStrike() && hints.isSizeOfStrikeEqualToFullStrike();
     }
 
     private void showSuccessView() {
-        System.out.printf(MESSAGE_FOR_SUCCESS, Hints.SIZE_OF_FULL_STRIKE);
+        System.out.printf(MESSAGE_FOR_SUCCESS, Hint.SIZE_OF_FULL_STRIKE);
     }
 
     public void showRestartOrExitView() {
@@ -37,7 +36,7 @@ public class ResultView {
         return scanner.nextInt();
     }
 
-    private void showHintsView(Hints hints) {
+    private void showHintsView(Hint hints) {
         if (hints.isNothing()) {
             System.out.println(Status.NOTHING.getMeaning());
             return;
@@ -50,7 +49,7 @@ public class ResultView {
         return String.format("%d%s", hint.getCount(), hint.getStatus().getMeaning());
     }
 
-    private String makeStringOfHints(Hints hints) {
+    private String makeStringOfHints(Hint hints) {
         StringBuilder stringBuilder = new StringBuilder();
 
         hints.getHintList().forEach(hint -> {

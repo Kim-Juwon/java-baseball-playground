@@ -1,58 +1,61 @@
 package baseball.component;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Numbers {
-    private List<Element> elements = new ArrayList<>();
+    private List<Integer> numbers = new ArrayList<>();
+
+    private Numbers(String stringNumber) {
+        IntStream.range(0, stringNumber.length())
+                .forEach(index -> numbers.add(toInteger(stringNumber.charAt(index))));
+    }
 
     public static Numbers from(String stringNumber) {
-        Numbers number = new Numbers();
-        number.addElementsFrom(stringNumber);
-
-        return number;
+        return new Numbers(stringNumber);
     }
 
-    public List<Element> getElements() {
-        return elements;
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
-    private void addElementsFrom(String numberString) {
-        for (int i = 0; i < numberString.length(); i++) {
-            elements.add(Element.of(numberString.charAt(i), i));
-        }
+    public Hint compareAndGetHints(Numbers other) {
+        return getHintFrom(other.getNumbers());
     }
 
-    public Hints compareAndGetHints(Numbers other) {
-        return getHintsFrom(other.getElements());
+    private Integer toInteger(char ch) {
+        return ch - '0';
     }
 
-    private Hints getHintsFrom(List<Element> otherElements) {
-        Map<Status, Integer> statusCountMap = new HashMap<>();
-        elements.forEach(element -> {
-            otherElements.stream()
-                    .map(otherElement -> getStatusFrom(element, otherElement))
-                    .filter(Objects::nonNull)
-                    .forEach(status -> {
-                        statusCountMap.put(status, statusCountMap.getOrDefault(status, 0) + 1);
-                    });
+    private Hint getHintFrom(List<Integer> otherNumbers) {
+        Hint hint = Hint.create();
+
+        IntStream.range(0, otherNumbers.size()).forEach(index -> {
+            Integer otherNumber = otherNumbers.get(index);
+            if (isStrike(otherNumber, index)) {
+                hint.increaseStrikeCount();
+            }
+            if (isBall(otherNumber, index)) {
+                hint.increaseBallCount();
+            }
         });
 
-        List<Hint> hintList = new ArrayList<>();
-        statusCountMap.forEach((key, value) -> {
-            hintList.add(Hint.of(key, value));
-        });
-
-        return Hints.from(hintList);
+        return hint;
     }
 
-    private Status getStatusFrom(Element element1, Element element2) {
-        if (element1.hasSameValueAndLocation(element2)) {
-            return Status.STRIKE;
-        }
-        if (element1.hasSameValueAndDifferentLocation(element2)) {
-            return Status.BALL;
-        }
+    private boolean isStrike(Integer otherNumber, Integer otherNumberIndex) {
+        return contains(otherNumber) && hasSameIndex(otherNumber, otherNumberIndex);
+    }
 
-        return null;
+    private boolean isBall(Integer otherNumber, Integer otherNumberIndex) {
+        return contains(otherNumber) && !hasSameIndex(otherNumber, otherNumberIndex);
+    }
+
+    private boolean contains(Integer otherNumber) {
+        return numbers.contains(otherNumber);
+    }
+
+    private boolean hasSameIndex(Integer otherNumber, Integer otherNumberIndex) {
+        return numbers.indexOf(otherNumber) == otherNumberIndex;
     }
 }

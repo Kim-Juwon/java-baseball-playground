@@ -1,6 +1,6 @@
 package baseball.game;
 
-import baseball.component.Hints;
+import baseball.component.Hint;
 import baseball.component.Numbers;
 import baseball.component.RandomNumberGenerator;
 import baseball.view.InputView;
@@ -15,7 +15,7 @@ public class BaseballGame {
     private boolean playing;
     private Numbers correctNumber;
     private Numbers inputNumber;
-    private Hints hints;
+    private Hint hints;
 
     public void run() {
         setUp();
