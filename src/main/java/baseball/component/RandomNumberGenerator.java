@@ -8,7 +8,7 @@ public class RandomNumberGenerator {
     private final Random random = new Random();
     private StringBuilder number;
 
-    public Number generateNumber() {
+    public Numbers generateNumber() {
         number = new StringBuilder();
 
         for (int i = 0; i < SIZE_OF_NUMBER; i++) {
@@ -22,7 +22,7 @@ public class RandomNumberGenerator {
             number.append(element);
         }
 
-        return Number.from(number.toString());
+        return Numbers.from(number.toString());
     }
 
     private int makeRandomInt() {

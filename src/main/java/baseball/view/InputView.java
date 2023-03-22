@@ -1,6 +1,6 @@
 package baseball.view;
 
-import baseball.component.Number;
+import baseball.component.Numbers;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public class InputView {
         System.out.print(INPUT_MESSAGE);
     }
 
-    public Number inputAndReturn() {
-        return Number.from(scanner.nextLine());
+    public Numbers inputAndReturn() {
+        return Numbers.from(scanner.nextLine());
     }
 }

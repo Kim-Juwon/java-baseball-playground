@@ -2,11 +2,11 @@ package baseball.component;
 
 import java.util.*;
 
-public class Number {
+public class Numbers {
     private List<Element> elements = new ArrayList<>();
 
-    public static Number from(String stringNumber) {
-        Number number = new Number();
+    public static Numbers from(String stringNumber) {
+        Numbers number = new Numbers();
         number.addElementsFrom(stringNumber);
 
         return number;
@@ -22,7 +22,7 @@ public class Number {
         }
     }
 
-    public Hints compareAndGetHints(Number other) {
+    public Hints compareAndGetHints(Numbers other) {
         return getHintsFrom(other.getElements());
     }
 
