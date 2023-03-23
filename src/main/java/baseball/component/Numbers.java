@@ -19,7 +19,7 @@ public class Numbers {
         return Collections.unmodifiableList(numbers);
     }
 
-    public Hint compareAndGetHints(Numbers other) {
+    public Hint compare(Numbers other) {
         return getHintFrom(other.getNumbers());
     }
 
