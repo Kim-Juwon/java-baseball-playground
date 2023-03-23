@@ -1,9 +1,10 @@
 package baseball.component;
 
 public class Hint {
+    private static final Integer ZERO = 0;
+    private static final Integer THREE = 3;
     private Integer strikeCount = 0;
     private Integer ballCount = 0;
-    public static final int FULL_COUNT_OF_STRIKE = 3;
 
     public Hint() {}
 
@@ -29,14 +30,30 @@ public class Hint {
     }
 
     public boolean hasOnlyStrike() {
-        return strikeCount > 0 && ballCount == 0;
+        return isStrikeCountPositive() && isBallCountZero();
     }
 
-    public boolean is3Strike() {
-        return strikeCount.equals(3);
+    public boolean isThreeStrike() {
+        return isStrikeCountThree();
     }
 
     public boolean isNothing() {
-        return strikeCount.equals(0) && ballCount.equals(0);
+        return isStrikeCountZero() && isBallCountZero();
+    }
+
+    private boolean isStrikeCountThree() {
+        return strikeCount.equals(THREE);
+    }
+
+    private boolean isStrikeCountPositive() {
+        return strikeCount > ZERO;
+    }
+
+    private boolean isStrikeCountZero() {
+        return strikeCount.equals(ZERO);
+    }
+
+    private boolean isBallCountZero() {
+        return ballCount.equals(ZERO);
     }
 }
