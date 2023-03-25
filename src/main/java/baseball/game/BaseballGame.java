@@ -38,7 +38,7 @@ public class BaseballGame {
                 showRestartQuestionViewIfSuccessful();
             } catch (Throwable throwable) {
                 resultView.showErrorFrom(throwable);
-                terminateWhenUnprotectedErrorOccurs(throwable);
+                terminateWhenUnpredictedErrorOccurs(throwable);
             }
         }
     }
@@ -100,7 +100,7 @@ public class BaseballGame {
         }
     }
 
-    private void terminateWhenUnprotectedErrorOccurs(Throwable throwable) {
+    private void terminateWhenUnpredictedErrorOccurs(Throwable throwable) {
         if (throwable instanceof NonCriticalException) {
             return;
         }
