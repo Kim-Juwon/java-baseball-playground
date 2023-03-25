@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 public class Numbers {
-    private List<Integer> numbers = new ArrayList<>();
+    private final List<Integer> numbers = new ArrayList<>();
 
     private Numbers(String stringNumber) {
         IntStream.range(0, stringNumber.length())
