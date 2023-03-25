@@ -1,14 +1,20 @@
 package baseball.component;
 
+import baseball.exception.message.ExceptionMessage;
+import baseball.exception.critical.InvalidHintException;
+
 public class Hint {
-    private static final Integer ZERO = 0;
-    private static final Integer THREE = 3;
-    private Integer strikeCount = 0;
-    private Integer ballCount = 0;
+    private static final int ZERO = 0;
+    private static final int THREE = 3;
+    private static final String STRIKE_MESSAGE = "%d스트라이크";
+    private static final String BALL_MESSAGE = "%d볼";
+    private static final String NOTHING_MESSAGE = "낫싱";
+    private int strikeCount = 0;
+    private int ballCount = 0;
 
-    public Hint() {}
+    private Hint() {}
 
-    public Hint(Integer strikeCount, Integer ballCount) {
+    private Hint(Integer strikeCount, Integer ballCount) {
         this.strikeCount = strikeCount;
         this.ballCount = ballCount;
     }
