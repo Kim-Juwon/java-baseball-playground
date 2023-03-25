@@ -3,10 +3,14 @@ package baseball.component;
 import java.util.Random;
 
 public class RandomNumbersGenerator {
-    private static final int BOUND = 9;
-    private static final int SIZE_OF_NUMBERS = 3;
+    private static final int BOUND = 10;
+    private static final int LENGTH = 3;
     private final Random random = new Random();
     private StringBuilder stringBuilder;
+
+    public static RandomNumbersGenerator create() {
+        return new RandomNumbersGenerator();
+    }
 
     public Numbers generateNumbers() {
         initializeStringBuilder();
@@ -19,7 +23,7 @@ public class RandomNumbersGenerator {
     }
 
     private void addRandomNumbersToStringBuilder() {
-        for (int index = 0; index < SIZE_OF_NUMBERS; index++) {
+        for (int index = 0; index < LENGTH; index++) {
             Integer number = makeRandomInt();
             if (isAlreadyExist(number)) {
                 index--;
@@ -35,7 +39,7 @@ public class RandomNumbersGenerator {
     }
 
     private Integer makeRandomInt() {
-        return random.nextInt(BOUND) + 1;
+        return random.nextInt(BOUND - 1) + 1;
     }
 
     private boolean isAlreadyExist(Integer number) {
