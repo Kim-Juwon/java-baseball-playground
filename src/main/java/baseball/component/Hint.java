@@ -93,18 +93,26 @@ public class Hint {
     }
 
     private boolean isStrikeCountThree() {
-        return strikeCount.equals(THREE);
+        return strikeCount == THREE;
     }
 
     private boolean isStrikeCountPositive() {
         return strikeCount > ZERO;
     }
 
+    private boolean isBallCountPositive() {
+        return ballCount > ZERO;
+    }
+
     private boolean isStrikeCountZero() {
-        return strikeCount.equals(ZERO);
+        return strikeCount == ZERO;
     }
 
     private boolean isBallCountZero() {
-        return ballCount.equals(ZERO);
+        return ballCount == ZERO;
+    }
+
+    private String merge(String left, String right) {
+        return left + " " + right;
     }
 }
