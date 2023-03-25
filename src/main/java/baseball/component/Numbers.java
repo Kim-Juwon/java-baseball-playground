@@ -30,12 +30,12 @@ public class Numbers {
     private Hint getHintFrom(List<Integer> otherNumbers) {
         Hint hint = Hint.create();
 
-        IntStream.range(0, otherNumbers.size()).forEach(index -> {
-            Integer otherNumber = otherNumbers.get(index);
-            if (isStrike(otherNumber, index)) {
+        IntStream.range(0, otherNumbers.size()).forEach(otherNumberIndex -> {
+            Integer otherNumber = otherNumbers.get(otherNumberIndex);
+            if (isStrike(otherNumber, otherNumberIndex)) {
                 hint.increaseStrikeCount();
             }
-            if (isBall(otherNumber, index)) {
+            if (isBall(otherNumber, otherNumberIndex)) {
                 hint.increaseBallCount();
             }
         });
