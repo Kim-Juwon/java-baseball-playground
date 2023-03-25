@@ -27,6 +27,31 @@ public class Hint {
         return new Hint(strikeCount, ballCount);
     }
 
+    public int getStrikeCount() {
+        return strikeCount;
+    }
+
+    public int getBallCount() {
+        return ballCount;
+    }
+
+    public String makeString() {
+        if (isNothing()) {
+            return NOTHING_MESSAGE;
+        }
+        if (isStrikeCountOnlyPositive()) {
+            return String.format(STRIKE_MESSAGE, strikeCount);
+        }
+        if (isBallCountOnlyPositive()) {
+            return String.format(BALL_MESSAGE, ballCount);
+        }
+        if (isStrikeCountPositive() && isBallCountPositive()) {
+            return merge(String.format(STRIKE_MESSAGE, strikeCount), String.format(BALL_MESSAGE, ballCount));
+        }
+
+        throw new InvalidHintException(ExceptionMessage.HINT_IS_INVALID);
+    }
+
     public void increaseStrikeCount() {
         ++strikeCount;
     }
