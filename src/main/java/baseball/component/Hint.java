@@ -60,15 +60,35 @@ public class Hint {
         ++ballCount;
     }
 
-    public boolean hasOnlyStrike() {
-        return isStrikeCountPositive() && isBallCountZero();
-    }
-
     public boolean isThreeStrike() {
         return isStrikeCountThree();
     }
 
-    public boolean isNothing() {
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Hint)) {
+            return false;
+        }
+
+        Hint other = (Hint) obj;
+        return strikeCount == other.getStrikeCount()
+                && ballCount == other.getBallCount();
+    }
+
+    private boolean isStrikeCountOnlyPositive() {
+        return isStrikeCountPositive() && isBallCountZero();
+    }
+
+    private boolean isBallCountOnlyPositive() {
+        return isStrikeCountZero() && isBallCountPositive();
+    }
+
+    private boolean isNothing() {
         return isStrikeCountZero() && isBallCountZero();
     }
 
